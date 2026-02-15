@@ -536,5 +536,17 @@ document.addEventListener('keydown', function(e){
   }
 });
 </script>
+<!-- Analytics Tracking -->
+<script>
+(function(){
+  var A="https://russia-engineers-affair-allowing.trycloudflare.com",S="tom-skopek-classified";
+  function t(e,m){try{navigator.sendBeacon(A+"/api/track",JSON.stringify({site:S,page:location.pathname,event:e,referrer:document.referrer,meta:m||{}}))}catch(x){}}
+  t("pageview");
+  var sd=[25,50,75,100],sf=new Set();
+  window.addEventListener("scroll",function(){var p=Math.round((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100);sd.forEach(function(d){if(p>=d&&!sf.has(d)){sf.add(d);t("scroll",{depth:d})}})});
+  [10,30,60,120,300].forEach(function(s){setTimeout(function(){t("time",{seconds:s})},s*1000)});
+  document.addEventListener("click",function(e){var el=e.target.closest("a,button,input[type=submit],form");if(el){t("click",{tag:el.tagName,text:(el.innerText||el.value||"").slice(0,50),href:el.href||""})}});
+})();
+</script>
 </body>
 </html>
